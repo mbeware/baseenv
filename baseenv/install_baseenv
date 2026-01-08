@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+. ./install_perso_bashrc
+PWD_BEFORE="$PWD"
+git clone https://github.com/mbeware/mbe_install.git
+cd mbe_install
+. ./install_mbe_install
+cd "$PWD_BEFORE"
+"$HOME/.local/bin/mbe_install" info running install_baseenv
+"$HOME/.local/bin/mbe_install" info installed perso_bashrc
+"$HOME/.local/bin/mbe_install" info installed mbe_install
+"$HOME/.local/bin/mbe_install" rm -rf mbe_install
+"$HOME/.local/bin/mbe_install" ./install_tabby
+echo "Done"
+"$HOME/.local/bin/mbe_install" show
+echo -e "\e[1;30m\e[43mRestart you terminal emulator. Use tabby\e[0m" 
+

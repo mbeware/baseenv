@@ -1,0 +1,18 @@
+DIRECTORY="${HOME}/.local/bin"
+if [ -d "$DIRECTORY" ]; then
+   : #Do nothing
+else
+  mkdir "$DIRECTORY"
+fi
+if cat $HOME/.bashrc | grep -q ".config/perso_bashrc"; then
+    updatestatus="AlreadyUpdated"
+else
+    updatestatus="NeedUpdate"
+fi
+if [ $updatestatus == "NeedUpdate" ]; then
+    cat bashrc_newstuff >> $HOME/.bashrc
+    echo "call to $HOME/.config/perso_bashrc installed"
+else
+    echo "Nothing to do : call to $HOME/.config/perso_bashrc was already installed"
+fi
+

@@ -1,0 +1,3 @@
+if [ -f ~/.config/perso_bashrc ]; then
+    . ~/.config/perso_bashrc
+fi

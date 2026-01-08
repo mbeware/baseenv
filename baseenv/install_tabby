@@ -1,0 +1,9 @@
+DIRECTORY="$HOME/tabby_install"
+mkdir -p  $DIRECTORY
+PWD_BEFORE = "$PWD"
+cd "$DIRECTORY"
+wget https://github.com/Eugeny/tabby/releases/download/v1.0.229/tabby-1.0.229-linux-x64.deb 
+echo sudo dpkg -i tabby-1.0.229-linux-x64.deb
+cd "$PWD_BEFORE"
+rm -rf $DIRECTORY
+

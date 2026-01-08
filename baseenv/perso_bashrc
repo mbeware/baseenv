@@ -1,0 +1,48 @@
+######
+## Create .local/bin and add it to path
+######
+
+DIRECTORY="${HOME}/.local/bin"
+if [ -d "$DIRECTORY" ]; then
+   : #Do nothing
+else
+  mkdir "$DIRECTORY"
+fi
+
+# Test result in a var because I am not smart 
+# enough to make it work directly in the real if
+if echo "$PATH" | grep -q "$DIRECTORY"; then
+    unpath="InPath"
+else
+    unpath="NotInPath"
+fi
+
+if [ $unpath == "NotInPath" ]; then
+    PATH2=$DIRECTORY:$PATH
+    PATH=$PATH2
+else
+    : #Do nothing
+fi
+
+
+######
+## bash history done right
+######
+
+# history file now live in .config
+HISTFILE="$HOME/.config/bash_history"
+
+# Append to history, don't overwrite
+shopt -s histappend
+
+# After each command, append to history and reload
+PROMPT_COMMAND='history -a; history -n'
+
+# Big history
+HISTSIZE=100000
+HISTFILESIZE=200000
+
+# Don’t store useless junk
+HISTCONTROL=ignoreboth:erasedups
+HISTIGNORE="ls:pwd:exit:clear"
+
